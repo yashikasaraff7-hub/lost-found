@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getItems } from "../api";
+import { getItems, BACKEND_URL } from "../api";
 import { useAuth } from "../context/AuthContext";
 import "./Dashboard.css";
-
-const BACKEND_URL = "http://localhost:5001";
 
 export default function Dashboard() {
   const [items, setItems] = useState([]);

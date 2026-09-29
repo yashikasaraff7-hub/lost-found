@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getItemById, resolveItem, deleteItem } from "../api";
+import { getItemById, resolveItem, deleteItem, BACKEND_URL } from "../api";
 import { useAuth } from "../context/AuthContext";
 import "./ItemDetails.css";
-
-const BACKEND_URL = "http://localhost:5001";
 
 export default function ItemDetails() {
   const { id } = useParams();

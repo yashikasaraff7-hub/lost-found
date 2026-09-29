@@ -1,7 +1,9 @@
 import axios from "axios";
 
+export const BACKEND_URL = import.meta.env.VITE_API_URL || "https://lostnfound-8hhj.onrender.com";
+
 const API = axios.create({
-  baseURL: "http://localhost:5001/api",
+  baseURL: `${BACKEND_URL}/api`,
 });
 
 // Attach JWT token to every request if available
