@@ -59,6 +59,18 @@
   color: #a5b4fc;
 }
 
+.nav-btn-admin {
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  color: #fcd34d !important;
+  font-weight: 600;
+}
+
+.nav-btn-admin:hover {
+  background: rgba(245, 158, 11, 0.25);
+  color: #fef08a !important;
+}
+
 .nav-btn-register {
   background: linear-gradient(135deg, #6366f1, #8b5cf6);
   color: #fff !important;

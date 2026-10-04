@@ -18,6 +18,8 @@ API.interceptors.request.use((config) => {
 // Auth API
 export const registerUser = (formData) => API.post("/auth/register", formData);
 export const loginUser = (formData) => API.post("/auth/login", formData);
+export const adminLogin = (payload) => API.post("/auth/admin-login", payload);
+export const getMe = () => API.get("/auth/me");
 
 // Items API
 export const getItems = (params) => API.get("/items", { params });
@@ -30,5 +32,8 @@ export const updateItem = (id, formData) =>
   API.put(`/items/${id}`, formData, {
     headers: { "Content-Type": "multipart/form-data" },
   });
-export const resolveItem = (id) => API.patch(`/items/${id}/resolve`);
+export const resolveItem = (id, data) => API.patch(`/items/${id}/resolve`, data);
 export const deleteItem = (id) => API.delete(`/items/${id}`);
+export const getAdminStats = () => API.get("/items/admin/stats");
+export const bulkDeleteItems = (ids) => API.post("/items/bulk-delete", { ids });
+

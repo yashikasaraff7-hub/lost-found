@@ -21,6 +21,9 @@ export default function Navbar() {
         <Link to="/" className="nav-link">Dashboard</Link>
         {user ? (
           <>
+            {user.role === "admin" && (
+              <Link to="/admin" className="nav-link nav-btn-admin">🛡️ Admin Panel</Link>
+            )}
             <Link to="/items/new" className="nav-link nav-btn-add">+ Post Item</Link>
             <span className="nav-user">Hi, {user.name}</span>
             <button onClick={handleLogout} className="nav-btn-logout">Logout</button>

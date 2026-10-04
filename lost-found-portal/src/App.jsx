@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ItemForm from "./pages/ItemForm";
 import ItemDetails from "./pages/ItemDetails";
+import AdminPanel from "./pages/AdminPanel";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/items/new" element={<ItemForm />} />
           <Route path="/items/:id" element={<ItemDetails />} />
           <Route path="/items/:id/edit" element={<ItemForm />} />
+          <Route path="/admin" element={<AdminPanel />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
