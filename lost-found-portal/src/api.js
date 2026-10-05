@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const BACKEND_URL = import.meta.env.VITE_API_URL || "https://lostnfound-8hhj.onrender.com";
+export const BACKEND_URL = import.meta.env.VITE_API_URL || "https://lost-found-6zq5.onrender.com";
 
 const API = axios.create({
   baseURL: `${BACKEND_URL}/api`,
