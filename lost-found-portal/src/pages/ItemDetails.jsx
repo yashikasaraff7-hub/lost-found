@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getItemById, resolveItem, deleteItem } from "../api";
+import { getItemById, resolveItem, deleteItem, getImageSrc } from "../api";
 import { useAuth } from "../context/AuthContext";
 import "./ItemDetails.css";
 
@@ -62,7 +62,7 @@ export default function ItemDetails() {
       <div className="details-card">
         <div className="details-image-section">
           {item.imagePath ? (
-            <img src={item.imagePath} alt={item.description} />
+            <img src={getImageSrc(item.imagePath)} alt={item.description} />
           ) : (
             <div className="details-no-image">📷 No Image</div>
           )}

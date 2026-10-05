@@ -184,4 +184,21 @@ router.delete("/:id", auth, async (req, res) => {
   }
 });
 
+// POST /api/items/migrate-images — Clear broken old /uploads/ paths from DB
+router.post("/migrate-images", async (req, res) => {
+  try {
+    // Find all items with old-style /uploads/ paths (files no longer exist on disk)
+    const result = await Item.updateMany(
+      { imagePath: { $regex: "^/uploads/" } },
+      { $set: { imagePath: null } }
+    );
+    res.json({
+      message: `Migration complete. Cleared ${result.modifiedCount} broken image paths.`,
+      modifiedCount: result.modifiedCount,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 module.exports = router;

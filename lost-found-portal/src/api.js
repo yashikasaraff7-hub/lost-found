@@ -15,6 +15,15 @@ API.interceptors.request.use((config) => {
   return config;
 });
 
+// Helper: resolve image src for both old `/uploads/...` paths and new `data:` URLs
+export const getImageSrc = (imagePath) => {
+  if (!imagePath) return null;
+  // New format: Base64 data URL — use directly
+  if (imagePath.startsWith("data:")) return imagePath;
+  // Old format: server file path — prepend backend URL
+  return `${BACKEND_URL}${imagePath}`;
+};
+
 // Auth API
 export const registerUser = (formData) => API.post("/auth/register", formData);
 export const loginUser = (formData) => API.post("/auth/login", formData);
@@ -36,4 +45,5 @@ export const resolveItem = (id, data) => API.patch(`/items/${id}/resolve`, data)
 export const deleteItem = (id) => API.delete(`/items/${id}`);
 export const getAdminStats = () => API.get("/items/admin/stats");
 export const bulkDeleteItems = (ids) => API.post("/items/bulk-delete", { ids });
+export const migrateImages = () => API.post("/items/migrate-images");
 
