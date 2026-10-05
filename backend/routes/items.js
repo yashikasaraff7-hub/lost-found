@@ -13,11 +13,18 @@ router.post("/", auth, upload.single("image"), async (req, res) => {
       return res.status(400).json({ message: "Type, category, and description are required" });
     }
 
+    // Convert uploaded image buffer to Base64 data URL for MongoDB storage
+    let imagePath = null;
+    if (req.file) {
+      const base64 = req.file.buffer.toString("base64");
+      imagePath = `data:${req.file.mimetype};base64,${base64}`;
+    }
+
     const item = await Item.create({
       type,
       category,
       description,
-      imagePath: req.file ? `/uploads/${req.file.filename}` : null,
+      imagePath,
       owner: req.user._id,
     });
 
@@ -74,7 +81,10 @@ router.put("/:id", auth, upload.single("image"), async (req, res) => {
     if (type) item.type = type;
     if (category) item.category = category;
     if (description) item.description = description;
-    if (req.file) item.imagePath = `/uploads/${req.file.filename}`;
+    if (req.file) {
+      const base64 = req.file.buffer.toString("base64");
+      item.imagePath = `data:${req.file.mimetype};base64,${base64}`;
+    }
 
     await item.save();
     res.json(item);

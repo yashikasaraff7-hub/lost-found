@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getItems, BACKEND_URL } from "../api";
+import { getItems } from "../api";
 import { useAuth } from "../context/AuthContext";
 import "./Dashboard.css";
 
@@ -83,7 +83,7 @@ export default function Dashboard() {
             <Link to={`/items/${item._id}`} className="item-card" key={item._id}>
               <div className="item-image-wrapper">
                 {item.imagePath ? (
-                  <img src={`${BACKEND_URL}${item.imagePath}`} alt={item.description} />
+                  <img src={item.imagePath} alt={item.description} />
                 ) : (
                   <div className="no-image">📷</div>
                 )}

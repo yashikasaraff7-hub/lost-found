@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getItems, deleteItem, resolveItem, adminLogin, BACKEND_URL, getAdminStats, bulkDeleteItems } from "../api";
+import { getItems, deleteItem, resolveItem, adminLogin, getAdminStats, bulkDeleteItems } from "../api";
 import { useAuth } from "../context/AuthContext";
 import "./AdminPanel.css";
 
@@ -535,10 +535,10 @@ export default function AdminPanel() {
                     {item.imagePath ? (
                       <div
                         className="table-img-thumb"
-                        onClick={() => setPreviewImage(`${BACKEND_URL}${item.imagePath}`)}
+                        onClick={() => setPreviewImage(item.imagePath)}
                         title="Click to zoom image"
                       >
-                        <img src={`${BACKEND_URL}${item.imagePath}`} alt={item.category} />
+                        <img src={item.imagePath} alt={item.category} />
                       </div>
                     ) : (
                       <div className="table-img-placeholder">📷</div>
@@ -635,11 +635,11 @@ export default function AdminPanel() {
               <div
                 className="admin-card-image"
                 onClick={() =>
-                  item.imagePath && setPreviewImage(`${BACKEND_URL}${item.imagePath}`)
+                  item.imagePath && setPreviewImage(item.imagePath)
                 }
               >
                 {item.imagePath ? (
-                  <img src={`${BACKEND_URL}${item.imagePath}`} alt={item.description} />
+                  <img src={item.imagePath} alt={item.description} />
                 ) : (
                   <div className="no-image-placeholder">📷 No Image</div>
                 )}
